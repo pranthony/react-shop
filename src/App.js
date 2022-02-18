@@ -1,25 +1,67 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import BasicCard from './Greating';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Clock from './Clock';
+import Header from './Header';
+//import InventoryItem from './InventoryItem';
+
+
+const styles = {
+  body:{
+    background: "black",
+    color: "white", 
+    width:"330px", 
+    margin: "30px auto",
+    display: "grid",
+    placeContent: "center"
+  }, 
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+    
+  }
+}
+
+let products = [
+  {name: "shoes", price: 12.2, categoria: "ropa", description: "For every ocation"},
+  {name: "pants", price: 80.2, categoria: "ropa", description: "In all sizes"},
+  
+]
+class App extends React.Component{
+  /* constructor(){
+    super()
+  } */
+  render(){
+    return(
+      
+      <div
+        className="Example"
+        style = {styles.body}
+        id = "my-element">
+        
+        
+        <Header title="coolbox"/>
+        {products.map(e =>{
+          return(
+            <div
+              style={styles.container}>
+              <BasicCard 
+                name={e.name} 
+                price={e.price}
+                description={e.description}
+                categoria={e.categoria}
+                />
+              <br/>
+            </div>
+            )
+        })}
+          
+
+        <Clock/>
+      </div>
+    )
+  }
 }
 
 export default App;
